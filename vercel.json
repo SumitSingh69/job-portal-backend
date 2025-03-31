@@ -13,7 +13,7 @@
       }
     ],
     "env": {
-        "FRONTEND_URL":"http://localhost:5173",
+        "FRONTEND_URL":"https://job-portal-five-lime.vercel.app",
         "PORT":"4000",
         "MONGODB_URI":"mongodb+srv://issomeonein1234:RZlQ7cj4kxBEWQHY@cluster0.sjrjo.mongodb.net/sumitDatabase?retryWrites=true&w=majority&appName=Cluster0",
         "JWT_SECRET":"Gy/crLZxhkY5v0zzNS544bdycLI9lHuqfhFm4fFGc5w=",
