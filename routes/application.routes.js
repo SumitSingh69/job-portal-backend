@@ -3,7 +3,7 @@ import { verifyAccessToken } from "../middleware/auth.middleware";
 import { getApplicationByJobId } from "../controller/applications.controller";
 const router = express.Router();
 
-router.post("/application/get/:id", verifyAccessToken, getApplicationByJobId);
+router.get("/application/get/:id", verifyAccessToken, getApplicationByJobId);
 
 
 export default router;
