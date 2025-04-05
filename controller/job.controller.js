@@ -4,6 +4,7 @@ import User from "../model/user.Model.js";
 import mongoose from "mongoose";
 import JobSeeker from "../model/job-seeker.Model.js";
 import Applications from "../model/applications.Model.js";
+import { getApplicationByJobId } from "./applications.controller.js";
 
 export const createJob = async (req, res, next) => {
   try {
