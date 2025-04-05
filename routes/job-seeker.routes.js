@@ -7,6 +7,6 @@ const router = Router();
 
 router.post('/job-seeker/create' , verifyAccessToken , isJobseeker , createJobSeeker);
 router.get('/job-seeker/me' , verifyAccessToken , isJobseeker , getJobSeekerByUserId);
-router.get('/job-seeker/check-status' , verifyAccessToken , isJobseeker , checkCompletionStatus);
+router.get('/job-seeker/check-status/:id' , verifyAccessToken , isJobseeker , checkCompletionStatus);
 
 export default router;

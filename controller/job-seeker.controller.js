@@ -275,7 +275,7 @@ export const getJobSeekerByUserId = async (req, res) => {
 };
 
 // Helper function to check profile completion status
-const checkProfileCompletionStatus = (jobSeeker) => {
+export const checkProfileCompletionStatus = (jobSeeker) => {
   
   const essentialFields = [
     "resume", 
@@ -377,9 +377,6 @@ export const checkCompletionStatus = async (req, res) => {
   try {
     const { id } = req.params;
     
-    if (!id.match(/^[0-9a-fA-F]{24}$/)) {
-      return res.status(400).json({ message: "Invalid ID format" });
-    }
     
     const jobSeeker = await JobSeeker.findById(id);
     
