@@ -11,6 +11,7 @@ import jobRouter from "./routes/jobs.routes.js";
 import adminRouter from "./routes/admin.routes.js";
 import jobseeker from "./routes/job-seeker.routes.js";
 import application from "./routes/application.routes.js";
+import contact from "./routes/contact.routes.js";
 
 dotenv.config();
 
@@ -25,7 +26,7 @@ app.use(cors({
 
 app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
-
+app.set("trust proxy", true);
 
 app.use(session({
     name: 'session',
@@ -61,6 +62,7 @@ app.use('/api', jobRouter);
 app.use('/api', adminRouter);
 app.use('/api', jobseeker);
 app.use('/api', application);
+app.use('/api', contact);
 
 connectDB().then(() => {
     app.listen(PORT, () => {

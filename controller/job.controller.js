@@ -82,6 +82,8 @@ export const getAllJobs = async (req, res, next) => {
       maxSalary,
       status,
       companyId,
+      jobType,
+      skills,
     } = req.query;
 
     // Basic filters that apply to all queries
@@ -89,13 +91,32 @@ export const getAllJobs = async (req, res, next) => {
     
     // Add search filters
     if (title) filters.title = { $regex: title, $options: "i" };
+    
+    // Handle location filters
     if (city) filters["location.city"] = { $regex: city, $options: "i" };
     if (state) filters["location.state"] = { $regex: state, $options: "i" };
     if (country) filters["location.country"] = { $regex: country, $options: "i" };
+    if (jobType) filters["location.jobType"] = jobType;
+    
+    // Handle company filter
     if (companyId) filters.companyId = companyId;
+    
+    // Handle salary filters
+    // For min salary, we want jobs with max_salary >= minSalary
     if (minSalary) filters.max_salary = { $gte: parseInt(minSalary) };
+    // For max salary, we want jobs with min_salary <= maxSalary
     if (maxSalary) filters.min_salary = { $lte: parseInt(maxSalary) };
+    
+    // Handle status filter
     if (status) filters.status = status;
+    
+    // Handle skills filter
+    if (skills) {
+      const skillsArray = skills.split(',');
+      filters.skills = { $in: skillsArray };
+    }
+
+    console.log("Applied filters:", filters);
 
     // Create sort options
     const sortOptions = {};
